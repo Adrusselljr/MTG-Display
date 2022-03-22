@@ -1,38 +1,125 @@
-.App {
+.wrapper {
+  padding: 20px;
+  background-color: rgb(8, 6, 13);
+}
+
+.logo {
+  width: 700px;
+  height: 230px;
+  margin-bottom: 15px;
+}
+
+.header {
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 330px
+}
+
+.search {
+  border-radius: 10px;
+  height: 25px;
+}
+
+.inputs {
+  width: 900px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+img {
+  border-radius: 10px;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 200px;
+  height: 277px;
+  margin: 0px 25px 35px 0px;
+  color: white;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
   text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.flip-card-back {
+  border-radius: 5px;
+  padding: 3px;
+  background-color: rgb(220,220,222);
+  color: black;
+  transform: rotateY(180deg);
+  font-size: small;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  color: rgb(232,23,8);
+}
+
+.type {
+  color: rgb(158,17,15);
+}
+
+.power {
+  color: rgb(97,0,0);
+}
+
+.section {
+  display: flex;
+}
+
+.arena {
+  margin-top: 290px;
+  width: 700px;
+  height: 180px;
+  transform: rotate(90deg);
+}
+
+.kingdom {
+  margin-top: 300px;
+  width: 700px;
+  height: 180px;
+  transform: rotate(90deg);
+}
+
+.adLeft, .adRight {
+  width: 200px;
+  height: 800px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btns {
+  width: 300px;
+  margin-left: 535px;
+  display: flex;
+  justify-content: space-around;
 }
