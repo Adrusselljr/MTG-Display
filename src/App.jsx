@@ -6,18 +6,20 @@ import logo from './images/logo.jpeg'
 import cardKingdom from './images/cardKingdom.png'
 import magicArena from './images/magicarena.jpeg'
 
-let url = `https://api.magicthegathering.io/v1/cards?page=`
+let url = `https://api.magicthegathering.io/v1/cards`
 
 
 export class App extends Component {
     
     state = {
         pageNum: 1,
-        cardsArray: []
+        cardsArray: [],
+        filterType: "All",
+        filterColor: "All"
     }
     
     displayCards = async() => {
-        const fetchedData = await fetch(`${url}${this.state.pageNum}`)
+        const fetchedData = await fetch(`${url}?page=${this.state.pageNum}`)
         const parsedData = await fetchedData.json()
 
         this.setState({
@@ -33,7 +35,6 @@ export class App extends Component {
     }
 
     clickHandlerPageNext = () => {
-        console.log("Next page ", this.state.pageNum)
         this.setState({
             pageNum: this.state.pageNum + 1
         }, () => {
@@ -42,14 +43,49 @@ export class App extends Component {
     }
 
     clickHandlerPagePrevious = () => {
-        console.log("previous page ", this.state.pageNum)
-        this.setState((prevState) => {
+        this.setState(prevState => {
             return {
                 pageNum: prevState.pageNum - 1
             }
         }, () => {
             return this.displayCards()
         })
+    }
+
+    changeSearchType = e => {
+        this.setState({
+            filterType: e.target.value
+        })
+    }
+
+    changeSearchColor = e => {
+        this.setState({
+            filterColor: e.target.value
+        })
+    }
+
+    clickFilterType = () => {
+        let newCardsArray = []
+        this.state.cardsArray.forEach(card => {
+            if(card.types.includes(this.state.filterType)) {
+                newCardsArray.push(card)
+            }
+        })
+        this.setState({
+            cardsArray: newCardsArray
+        }, () => console.log(this.state.cardsArray))
+    }
+
+    clickFilterColor = () => {
+        let newCardsArray = []
+        this.state.cardsArray.forEach(card => {
+            if(card.colors.includes(this.state.filterColor)) {
+                newCardsArray.push(card)
+            }
+        })
+        this.setState({
+            cardsArray: newCardsArray
+        }, () => console.log(this.state.cardsArray))
     }
 
     render() {
@@ -60,13 +96,48 @@ export class App extends Component {
                 <div className="imgHeader">
                     <img className='logo' src={ logo } alt="Logo" />
                 </div>
+
                 <div className="inputs">
-                    <label>SEARCH 1</label>
-                    <input className='search' type="text" name=""/>
-                    <button className='searchBtn'>Submit</button>
-                    <label> SEARCH 2</label>
-                    <input className='search' type="text" name=""/>
-                    <button className='searchBtn'>Submit</button>
+                    <label>Filter by Type:</label>
+                        <select onChange={ this.changeSearchType } id='types' value={ this.state.filterType }>
+                            <option value="All">All</option>
+                            <option value="Artifact">Artifact</option>
+                            <option value="Conspiracy">Conspiracy</option>
+                            <option value="Creature">Creature</option>
+                            <option value="Dragon">Dragon</option>
+                            <option value="Elemental">Elemental</option>
+                            <option value="Enchantment">Enchantment</option>
+                            <option value="Goblin">Goblin</option>
+                            <option value="Hero">Hero</option>
+                            <option value="instant">instant</option>
+                            <option value="Instant">Instant</option>
+                            <option value="Jaguar">Jaguar</option>
+                            <option value="Knights">Knights</option>
+                            <option value="Land">Land</option>
+                            <option value="Phenomenon">Phenomenon</option>
+                            <option value="Plane">Plane</option>
+                            <option value="Planeswalker">Planeswalker</option>
+                            <option value="Scheme">Scheme</option>
+                            <option value="Sorcery">Sorcery</option>
+                            <option value="Specter">Specter</option>
+                            <option value="Summon">Summon</option>
+                            <option value="Tribal">Tribal</option>
+                            <option value="Vanguard">Vanguard</option>
+                            <option value="Wolf">Wolf</option>
+                            <option value="You'll">You'll</option>
+                        </select>
+                    <button onClick={ this.clickFilterType } className='btn btn-primary'>Submit</button>
+
+                    <label>Filter by Color:</label>
+                        <select onChange={ this.changeSearchColor } id='colors' value={ this.state.filterColor }>
+                            <option value="All">All</option>
+                            <option value="White">White</option>
+                            <option value="Black">Black</option>
+                            <option value="Blue">Blue</option>
+                            <option value="Green">Green</option>
+                            <option value="Red">Red</option>
+                        </select>
+                    <button onClick={ this.clickFilterColor } className='btn btn-primary'>Submit</button>
                 </div>
             </div>
 
@@ -91,7 +162,7 @@ export class App extends Component {
 
             <br/>
 
-            <div className="btns">
+            <div className="pageBtns">
                 {this.state.pageNum === 1
                 ? ""
                 : <button onClick={ this.clickHandlerPagePrevious } className='btn btn-primary'>Previous Page</button>
