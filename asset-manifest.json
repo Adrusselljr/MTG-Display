@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/mtg-display/static/css/main.211de313.css",
+    "main.js": "/mtg-display/static/js/main.bcba0a86.js",
+    "static/media/magicarena.jpeg": "/mtg-display/static/media/magicarena.5449ed583389710964f2.jpeg",
+    "static/media/logo.jpeg": "/mtg-display/static/media/logo.b51d6a5d63c1e4a8e2b9.jpeg",
+    "index.html": "/mtg-display/index.html",
+    "main.211de313.css.map": "/mtg-display/static/css/main.211de313.css.map",
+    "main.bcba0a86.js.map": "/mtg-display/static/js/main.bcba0a86.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.211de313.css",
+    "static/js/main.bcba0a86.js"
+  ]
+}
