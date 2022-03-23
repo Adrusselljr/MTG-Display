@@ -36,6 +36,8 @@ export class App extends Component {
 
     clickHandlerPageNext = () => {
         this.setState({
+            filterColor: "All",
+            filterType: "All",
             pageNum: this.state.pageNum + 1
         }, () => {
             return this.displayCards()
@@ -45,6 +47,8 @@ export class App extends Component {
     clickHandlerPagePrevious = () => {
         this.setState(prevState => {
             return {
+                filterColor: "All",
+                filterType: "All",
                 pageNum: prevState.pageNum - 1
             }
         }, () => {
@@ -70,6 +74,9 @@ export class App extends Component {
             if(card.types.includes(this.state.filterType)) {
                 newCardsArray.push(card)
             }
+            if(this.state.filterType === "All") {
+                this.displayCards()
+            }
         })
         this.setState({
             cardsArray: newCardsArray
@@ -81,6 +88,9 @@ export class App extends Component {
         this.state.cardsArray.forEach(card => {
             if(card.colors.includes(this.state.filterColor)) {
                 newCardsArray.push(card)
+            }
+            if(this.state.filterColor === "All") {
+                this.displayCards()
             }
         })
         this.setState({
