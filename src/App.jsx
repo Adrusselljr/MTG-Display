@@ -73,58 +73,62 @@ export class App extends Component {
 
     clickFilterType = () => {
         let newCardsArray = []
-        this.state.cardsArray.forEach(card => {
-            if(card.types.includes(this.state.filterType)) {
-                newCardsArray.push(card)
-            }
-            if(this.state.filterType === "All") {
-                this.displayCards()
-            }
-        })
-        this.setState({
-            cardsArray: newCardsArray
-        }, () => {
-            if(this.state.cardsArray.length === 0) {
-                this.setState({
-                    errorMessage: "Cannot proccess your request at this time!"
-                })
-                setTimeout(() => {
+        if(this.state.filterType === "All") {
+            this.displayCards()
+        }
+        else {
+            this.state.cardsArray.forEach(card => {
+                if(card.types.includes(this.state.filterType)) {
+                    newCardsArray.push(card)
+                }
+            })
+            this.setState({
+                cardsArray: newCardsArray
+            }, () => {
+                if(this.state.cardsArray.length === 0) {
                     this.setState({
-                        errorMessage: "",
-                        filterType: "All"
+                        errorMessage: "Cannot proccess your request at this time!"
                     })
-                    this.displayCards()
-                }, 1500)
-            }
-        })
+                    setTimeout(() => {
+                        this.setState({
+                            errorMessage: "",
+                            filterType: "All"
+                        })
+                        this.displayCards()
+                    }, 1500)
+                }
+            })
+        }
     }
 
     clickFilterColor = () => {
         let newCardsArray = []
-        this.state.cardsArray.forEach(card => {
-            if(card.colors.includes(this.state.filterColor)) {
-                newCardsArray.push(card)
-            }
-            if(this.state.filterColor === "All") {
-                this.displayCards()
-            }
-        })
-        this.setState({
-            cardsArray: newCardsArray
-        }, () => {
-            if(this.state.cardsArray.length === 0) {
-                this.setState({
-                    errorMessage: "Cannot proccess your request at this time!"
-                })
-                setTimeout(() => {
+        if(this.state.filterColor === "All") {
+            this.displayCards()
+        }
+        else {
+            this.state.cardsArray.forEach(card => {
+                if(card.colors.includes(this.state.filterColor)) {
+                    newCardsArray.push(card)
+                }
+            })
+            this.setState({
+                cardsArray: newCardsArray
+            }, () => {
+                if(this.state.cardsArray.length === 0) {
                     this.setState({
-                        errorMessage: "",
-                        filterType: "All"
+                        errorMessage: "Cannot proccess your request at this time!"
                     })
-                    this.displayCards()
-                }, 1500)
-            }
-        })
+                    setTimeout(() => {
+                        this.setState({
+                            errorMessage: "",
+                            filterType: "All"
+                        })
+                        this.displayCards()
+                    }, 1500)
+                }
+            })
+        }
     }
 
     render() {
