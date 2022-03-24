@@ -98,6 +98,11 @@ export class App extends Component {
             if(this.state.filterColor === "All") {
                 this.displayCards()
             }
+            if(newCardsArray.length === 0) {
+                this.setState({
+                    errorMessage: "Cannot proccess your request at this time!"
+                })
+            }
         })
         this.setState({
             cardsArray: newCardsArray
