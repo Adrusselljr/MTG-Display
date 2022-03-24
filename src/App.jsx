@@ -80,21 +80,23 @@ export class App extends Component {
             if(this.state.filterType === "All") {
                 this.displayCards()
             }
-            if(newCardsArray.length === 0) {
+        })
+        this.setState({
+            cardsArray: newCardsArray
+        }, () => {
+            if(this.state.cardsArray.length === 0) {
                 this.setState({
                     errorMessage: "Cannot proccess your request at this time!"
                 })
                 setTimeout(() => {
                     this.setState({
-                        errorMessage: ""
+                        errorMessage: "",
+                        filterType: "All"
                     })
                     this.displayCards()
                 }, 1500)
             }
         })
-        this.setState({
-            cardsArray: newCardsArray
-        }, () => console.log(this.state.cardsArray))
     }
 
     clickFilterColor = () => {
@@ -110,17 +112,24 @@ export class App extends Component {
                 this.setState({
                     errorMessage: "Cannot proccess your request at this time!"
                 })
+            }
+        })
+        this.setState({
+            cardsArray: newCardsArray
+        }, () => {
+            if(this.state.cardsArray.length === 0) {
+                this.setState({
+                    errorMessage: "Cannot proccess your request at this time!"
+                })
                 setTimeout(() => {
                     this.setState({
-                        errorMessage: ""
+                        errorMessage: "",
+                        filterType: "All"
                     })
                     this.displayCards()
                 }, 1500)
             }
         })
-        this.setState({
-            cardsArray: newCardsArray
-        }, () => console.log(this.state.cardsArray))
     }
 
     render() {
