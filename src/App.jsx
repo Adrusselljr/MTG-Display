@@ -43,6 +43,7 @@ export class App extends Component {
         }, () => {
             return this.displayCards()
         })
+        window.scrollTo(0, 0)
     }
 
     clickHandlerPagePrevious = () => {
@@ -55,6 +56,7 @@ export class App extends Component {
         }, () => {
             return this.displayCards()
         })
+        window.scrollTo(0, 0)
     }
 
     changeSearchType = e => {
