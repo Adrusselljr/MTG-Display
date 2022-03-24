@@ -82,6 +82,12 @@ export class App extends Component {
                 this.setState({
                     errorMessage: "Cannot proccess your request at this time!"
                 })
+                setTimeout(() => {
+                    this.setState({
+                        errorMessage: ""
+                    })
+                    this.displayCards()
+                }, 1500)
             }
         })
         this.setState({
@@ -102,6 +108,12 @@ export class App extends Component {
                 this.setState({
                     errorMessage: "Cannot proccess your request at this time!"
                 })
+                setTimeout(() => {
+                    this.setState({
+                        errorMessage: ""
+                    })
+                    this.displayCards()
+                }, 1500)
             }
         })
         this.setState({
