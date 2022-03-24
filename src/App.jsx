@@ -15,7 +15,8 @@ export class App extends Component {
         pageNum: 1,
         cardsArray: [],
         filterType: "All",
-        filterColor: "All"
+        filterColor: "All",
+        errorMessage: ""
     }
     
     displayCards = async() => {
@@ -76,6 +77,11 @@ export class App extends Component {
             }
             if(this.state.filterType === "All") {
                 this.displayCards()
+            }
+            if(newCardsArray.length === 0) {
+                this.setState({
+                    errorMessage: "Cannot proccess your request at this time!"
+                })
             }
         })
         this.setState({
@@ -157,6 +163,10 @@ export class App extends Component {
                 </div>
 
                 <div className="cards">
+                    <div className='errorParent'>
+                        <p className='error'>{this.state.errorMessage}</p>
+                    </div>
+
                     { this.state.cardsArray.map(elm => {
                         return <Card
                         key={ elm.id }

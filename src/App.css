@@ -124,3 +124,15 @@ img {
   display: flex;
   justify-content: space-around;
 }
+
+.errorParent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+}
+
+.error {
+  color: red;
+  font-size: xx-large;
+}
